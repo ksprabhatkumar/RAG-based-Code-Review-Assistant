@@ -1,0 +1,80 @@
+# ========================
+# Environment Variables
+# ========================
+.env
+.env.*
+!.env.example
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# ========================
+# Python / Backend
+# ========================
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.pyre/
+.venv/
+venv/
+env/
+backend/venv/
+backend/env/
+backend/.venv/
+backend/__pycache__/
+backend/*.py[cod]
+backend/*$py.class
+backend/.pytest_cache/
+backend/.coverage
+backend/htmlcov/
+backend/.mypy_cache/
+backend/.ruff_cache/
+
+# ========================
+# Databases & Vector Storage
+# ========================
+# Ignore local SQLite databases
+*.db
+*.sqlite
+*.sqlite3
+rag_audit.db
+backend/rag_audit.db
+
+# Ignore local vector DB / retrieval storage
+chroma_data/
+chroma_storage/
+vector_store/
+data/embeddings/
+
+# ========================
+# Node.js / Next.js Dashboard
+# ========================
+dashboard/node_modules/
+dashboard/.next/
+dashboard/out/
+dashboard/build/
+dashboard/.vercel/
+dashboard/.turbo/
+dashboard/.cache/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnp.*
+
+# ========================
+# OS & IDE Files
+# ========================
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+*.tmp
+*.bak
