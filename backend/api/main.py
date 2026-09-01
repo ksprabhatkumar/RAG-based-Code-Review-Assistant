@@ -3,13 +3,16 @@ from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 from api.webhook import router as webhook_router
 from api.database import SessionLocal, ReviewLog
+import os
 
 app = FastAPI(title="RAG Code Review Assistant")
 
 # Allow Next.js frontend to fetch data
+# In production, set CORS_ORIGINS to your Vercel URL (e.g. https://rag-reviewer.vercel.app)
+origins = os.environ.get("CORS_ORIGINS", "*").split(",")
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"], # In prod, restrict to your Vercel URL
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
