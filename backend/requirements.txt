@@ -10,3 +10,5 @@ sentence-transformers==2.5.1
 rank_bm25==0.2.2
 pydantic==2.6.4
 numpy<2.0.0
+PyGithub==2.3.0
+sqlalchemy==2.0.29

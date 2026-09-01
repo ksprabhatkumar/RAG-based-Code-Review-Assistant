@@ -1,0 +1,190 @@
+================================================================================
+                    RAG CODE REVIEWER — COMMIT SCHEDULE
+================================================================================
+
+This file documents which files to commit on each day, with exact git commands.
+Days 1–5 have already been completed. Days 6–8 cover remaining uncommitted work.
+
+
+================================================================================
+ DAY 1: Project Scaffolding
+================================================================================
+
+Files:
+  .gitignore
+  backend/requirements.txt
+  backend/pytest.ini
+  backend/api/__init__.py
+  backend/api/main.py              (Basic FastAPI app with /health endpoint)
+
+Git Commands:
+  git add .gitignore backend/
+  git commit -m "chore: initialize monorepo scaffolding and fastapi skeleton"
+
+
+================================================================================
+ DAY 2: The Parsing & AST Engine
+================================================================================
+
+Files:
+  backend/ingestion/__init__.py
+  backend/ingestion/parser.py      (tree-sitter Python parser initialization)
+  backend/ingestion/diff_parser.py (Unified diff parser → structured hunks)
+  backend/ingestion/ast_expander.py(AST expansion to retain function context)
+
+Git Commands:
+  git add backend/ingestion/parser.py backend/ingestion/diff_parser.py backend/ingestion/__init__.py
+  git commit -m "feat: add unified diff parser to extract changed hunks"
+
+  git add backend/ingestion/ast_expander.py
+  git commit -m "feat: implement tree-sitter AST expansion to retain function context"
+
+
+================================================================================
+ DAY 3: Hybrid Vector Retrieval & Testing
+================================================================================
+
+Files:
+  backend/retrieval/__init__.py
+  backend/retrieval/indexer.py     (HybridRetriever: ChromaDB + BM25)
+  backend/tests/__init__.py
+  backend/tests/test_smoke.py      (Smoke tests for health, tree-sitter, ChromaDB)
+
+Git Commands:
+  git add backend/retrieval/
+  git commit -m "feat: setup hybrid retriever combining chromadb and bm25"
+
+  git add backend/tests/
+  git commit -m "test: add smoke tests for AST parsing and vector retrieval"
+
+
+================================================================================
+ DAY 4: LLM Generation & Local CLI
+================================================================================
+
+Files:
+  backend/generation/__init__.py
+  backend/generation/llm_client.py (Groq & Ollama smoke-test clients)
+  backend/generation/generator.py  (Prompt assembly, JSON generation, grounding check)
+  backend/api/cli.py               (Local CLI entrypoint for end-to-end RAG testing)
+
+Git Commands:
+  git add backend/generation/
+  git commit -m "feat: integrate Groq LLM with strict JSON schema enforcement"
+
+  git add backend/api/cli.py
+  git commit -m "feat: wire up local CLI entrypoint for end-to-end RAG testing"
+
+
+================================================================================
+ DAY 5: GitHub API Client & Webhooks
+================================================================================
+
+Files:
+  backend/api/github_client.py     (PyGithub wrapper for PR diffs & inline comments)
+  backend/api/webhook.py           (Async webhook handler + full RAG pipeline)
+  backend/api/main.py              (Updated to include webhook_router + CORS + /api/reviews)
+
+Git Commands:
+  git add backend/api/github_client.py
+  git commit -m "feat: add PyGithub client for PR diff and source file fetching"
+
+  git add backend/api/webhook.py backend/api/main.py
+  git commit -m "feat: create async webhook endpoint for GitHub PR events"
+
+
+================================================================================
+ DAY 6: Audit Database, Evaluation Suite & Test Fixtures
+ (PENDING — NOT YET COMMITTED)
+================================================================================
+
+Files:
+  backend/api/database.py          (SQLAlchemy models + SQLite audit log)
+  backend/eval/__init__.py
+  backend/eval/evaluator.py        (RAGAS-style evaluation: Recall@K, Faithfulness)
+  backend/test_webhook.py          (Manual webhook trigger script for testing)
+  test.diff                        (Sample diff for local CLI testing)
+  fake_repo/calculator.py          (Mock repo file for end-to-end tests)
+  fake_repo/CONTRIBUTING.md
+  fake_repo/README.md
+  backend/requirements.txt         (Updated: added PyGithub and sqlalchemy)
+
+Git Commands:
+  git add backend/api/database.py
+  git commit -m "feat: add SQLAlchemy audit database for review traceability"
+
+  git add backend/eval/
+  git commit -m "feat: add RAGAS-style evaluation suite with retrieval recall and faithfulness"
+
+  git add backend/test_webhook.py test.diff fake_repo/
+  git commit -m "test: add webhook trigger script, sample diff, and mock repo fixtures"
+
+  git add backend/requirements.txt
+  git commit -m "fix: add missing PyGithub and sqlalchemy to requirements.txt"
+
+
+================================================================================
+ DAY 7: CI Pipeline & Dashboard
+ (PENDING — NOT YET COMMITTED)
+================================================================================
+
+Files:
+  .github/workflows/ci.yml         (GitHub Actions: Python 3.11 setup + smoke tests)
+  dashboard/package.json
+  dashboard/tsconfig.json
+  dashboard/next.config.ts
+  dashboard/eslint.config.mjs
+  dashboard/postcss.config.mjs
+  dashboard/.gitignore
+  dashboard/src/app/layout.tsx      (Root layout with Geist fonts)
+  dashboard/src/app/globals.css
+  dashboard/src/app/page.tsx        (Live review audit log with retrieval traces)
+  dashboard/public/                 (Static assets)
+
+Git Commands:
+  git add .github/workflows/ci.yml
+  git commit -m "ci: add GitHub Actions workflow for automated smoke tests"
+
+  git add dashboard/.gitignore dashboard/package.json dashboard/tsconfig.json dashboard/next.config.ts dashboard/eslint.config.mjs dashboard/postcss.config.mjs dashboard/src/ dashboard/public/
+  git commit -m "feat: add Next.js explainability dashboard with live review audit log"
+
+
+================================================================================
+ DAY 8: Documentation & Cleanup
+ (PENDING — NOT YET COMMITTED)
+================================================================================
+
+Files:
+  readMe.md                        (Corrected and comprehensive project README)
+  commit.txt                       (This file — commit schedule reference)
+
+Git Commands:
+  git add readMe.md
+  git commit -m "docs: update README with corrected architecture, project structure, and setup guide"
+
+  git add commit.txt
+  git commit -m "docs: add commit schedule reference for project development timeline"
+
+
+================================================================================
+ NOTES
+================================================================================
+
+Files that should NOT be committed (already in .gitignore):
+  - .env / backend/.env            (Contains API keys — NEVER commit these)
+  - backend/venv/                  (Virtual environment)
+  - backend/__pycache__/           (Python bytecode cache)
+  - backend/.pytest_cache/         (Pytest cache)
+  - backend/rag_audit.db           (Local SQLite database)
+  - backend/scratch_eval.py        (Scratch/debug scripts — optional to commit)
+  - backend/scratch_eval2.py       (Scratch/debug scripts — optional to commit)
+  - dashboard/node_modules/        (Node dependencies)
+  - dashboard/.next/               (Next.js build cache)
+  - tree.txt                       (Large generated tree file — 5.6MB)
+
+Optional commits (scratch/debug files):
+  If you want to keep the scratch eval scripts for reference:
+    git add backend/scratch_eval.py backend/scratch_eval2.py
+    git commit -m "chore: add scratch evaluation debug scripts"
+
+================================================================================
