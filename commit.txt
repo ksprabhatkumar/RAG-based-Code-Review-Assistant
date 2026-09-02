@@ -95,7 +95,7 @@ Git Commands:
 
 ================================================================================
  DAY 6: Audit Database, Evaluation Suite & Test Fixtures
- (PENDING — NOT YET COMMITTED)
+ (PENDING — NOT YET COMMITTED) done
 ================================================================================
 
 Files:
@@ -125,7 +125,7 @@ Git Commands:
 
 ================================================================================
  DAY 7: CI Pipeline & Dashboard
- (PENDING — NOT YET COMMITTED)
+ (PENDING — NOT YET COMMITTED) 
 ================================================================================
 
 Files:
