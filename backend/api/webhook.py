@@ -12,8 +12,12 @@ github_manager = GitHubManager()
 # For MVP, we will mock the retriever globally. In prod, this happens on app startup.
 retriever = HybridRetriever()
 retriever.index_documents(
-    documents=["Use type hints for all function arguments.", "Never hardcode secrets like api_key."],
-    ids=["style_guide_001", "sec_001"]
+    documents=[
+        "Never instantiate a database Session() directly inside an API route. You must always use the get_db_session() context manager.",
+        "Never use local time datetime.now(). All timestamps must be generated using strict UTC time: datetime.now(timezone.utc).",
+        "Never hardcode API keys, Stripe tokens, or database passwords in the source code. Always fetch them dynamically using os.getenv."
+    ],
+    ids=["arch_db_001", "arch_time_002", "sec_key_003"]
 )
 
 def process_pr_review(repo_name: str, pr_number: int, commit_id: str):
