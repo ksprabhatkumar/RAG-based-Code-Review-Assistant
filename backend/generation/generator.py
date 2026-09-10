@@ -46,7 +46,7 @@ def generate_review(hunk: dict, expanded_code: str, context: dict) -> dict:
     
     response = client.chat.completions.create(
         messages=[{"role": "user", "content": prompt}],
-        model="openai/gpt-oss-120b", 
+        model="openai/gpt-oss-20b", 
         response_format={"type": "json_object"}
     )
     
